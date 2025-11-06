@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  Put,
 } from "@nestjs/common";
 import { ApiTags, ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { UsersService } from "./users.service";
@@ -40,7 +41,7 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
-  @Patch(":id")
+  @Put(":id")
   @ApiOperation({ summary: "Update user" })
   @ApiResponse({ status: 200, description: "Updated user", type: User })
   update(@Param("id", ParseIntPipe) id: number, @Body() dto: UpdateUserDto) {

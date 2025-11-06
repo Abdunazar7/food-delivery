@@ -7,6 +7,7 @@ import {
   OneToMany,
 } from "typeorm";
 import { ApiProperty } from "@nestjs/swagger";
+import { UserAddress } from "../../user_addresses/entities/user_address.entity";
 // import { UserAddress } from "../../user_addresses/entities/user_address.entity";
 // import { Order } from "../../orders/entities/order.entity";
 // import { Review } from "../../reviews/entities/review.entity";
@@ -46,9 +47,9 @@ export class User {
   })
   updated_at: Date;
 
-  //   // Relations
-  //   @OneToMany(() => UserAddress, (address) => address.user)
-  //   addresses: UserAddress[];
+    // Relations
+    @OneToMany(() => UserAddress, (address) => address.user)
+    addresses: UserAddress[];
 
   //   @OneToMany(() => Order, (order) => order.user)
   //   orders: Order[];
