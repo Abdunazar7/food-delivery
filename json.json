@@ -1,0 +1,339 @@
+{
+  "info": {
+    "_postman_id": "YOUR_COLLECTION_ID_HERE",
+    "name": "Food Delivery App - Authentication (NestJS/TypeORM)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. User Auth",
+      "item": [
+        {
+          "name": "User Sign Up",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Ali\",\n  \"lastName\": \"Valiyev\",\n  \"email\": \"user@example.com\",\n  \"password\": \"12345\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/user/signup",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "user", "signup"]
+            }
+          }
+        },
+        {
+          "name": "User Sign In",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{user_email}}\",\n  \"password\": \"{{user_password}}\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/user/signin",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "user", "signin"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Sign In dan keyin Access Token va User ID ni saqlash uchun skript shu yerga qo'shiladi"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "User Refresh",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": {{user_id}}\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/user/refresh",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "user", "refresh"]
+            }
+          }
+        },
+        {
+          "name": "User Sign Out",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": {{user_id}}\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/user/signout",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "user", "signout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Admin Auth",
+      "item": [
+        {
+          "name": "Admin Sign In",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@test.com\",\n  \"password\": \"adminpassword\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/admin/signin",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "admin", "signin"]
+            }
+          }
+        },
+        {
+          "name": "Admin Refresh",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"adminId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/admin/refresh",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "admin", "refresh"]
+            }
+          }
+        },
+        {
+          "name": "Admin Sign Out",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"adminId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/admin/signout",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "admin", "signout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Vendor Auth",
+      "item": [
+        {
+          "name": "Vendor Sign In",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"vendor@test.com\",\n  \"password\": \"vendorpassword\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/vendor/signin",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "vendor", "signin"]
+            }
+          }
+        },
+        {
+          "name": "Vendor Refresh",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vendorId\": 10\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/vendor/refresh",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "vendor", "refresh"]
+            }
+          }
+        },
+        {
+          "name": "Vendor Sign Out",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vendorId\": 10\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/vendor/signout",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "vendor", "signout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Courier Auth",
+      "item": [
+        {
+          "name": "Courier Sign In",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"courier@test.com\",\n  \"password\": \"courierpassword\"\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/courier/signin",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "courier", "signin"]
+            }
+          }
+        },
+        {
+          "name": "Courier Refresh",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"courierId\": 5\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/courier/refresh",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "courier", "refresh"]
+            }
+          }
+        },
+        {
+          "name": "Courier Sign Out",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"courierId\": 5\n}"
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/courier/signout",
+              "host": ["{{BASE_URL}}"],
+              "path": ["auth", "courier", "signout"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:3000/api",
+      "type": "string"
+    },
+    {
+      "key": "user_email",
+      "value": "user@example.com",
+      "type": "string"
+    },
+    {
+      "key": "user_password",
+      "value": "12345",
+      "type": "string"
+    },
+    {
+      "key": "user_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "user_access_token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

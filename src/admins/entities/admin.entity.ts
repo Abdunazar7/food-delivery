@@ -26,6 +26,9 @@ export class Admin {
   @Column({ default: false })
   is_creator: boolean;
 
+  @Column({ default: false })
+  is_active: boolean;
+
   @Column()
   refreshToken_hash: string;
 

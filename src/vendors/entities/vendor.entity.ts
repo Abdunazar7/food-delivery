@@ -29,6 +29,9 @@ export class Vendor {
   @Column({ nullable: true })
   password_hash: string;
 
+  @Column({ nullable: true })
+  refreshToken_hash?: string;
+
   @Column({ nullable: true, type: "text" })
   description: string;
 

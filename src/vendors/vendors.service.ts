@@ -38,7 +38,7 @@ export class VendorsService {
       name,
       owner_email,
       owner_phone,
-      password_hash: password,
+      password_hash: passwordHash,
       is_active,
       description,
       logo_url,
@@ -49,7 +49,7 @@ export class VendorsService {
 
   findAll(): Promise<Vendor[]> {
     return this.vendorRepo.find({
-      relations: ["addresses", "menuItems", "categories", "orders", "reviews"],
+      relations: ["addresses", "menuItems", "orders", "reviews"],
     });
   }
 
