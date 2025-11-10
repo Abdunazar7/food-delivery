@@ -18,10 +18,6 @@ export class CreateAdminDto {
   @IsString()
   password: string;
 
-  @ApiProperty({ example: "password123" })
-  @IsString()
-  confirm_password: string;
-
   @ApiProperty({ example: false })
   @IsBoolean()
   is_creator: boolean;

@@ -4,9 +4,11 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from "typeorm";
 import { User } from "../../users/entities/user.entity";
 import { District } from "../../districts/entities/district.entity";
+import { Order } from "../../orders/entities/order.entity";
 
 @Entity("user_addresses")
 export class UserAddress {
@@ -28,13 +30,15 @@ export class UserAddress {
   @Column({ type: "decimal", precision: 10, scale: 6, nullable: true })
   longitude: number;
 
-  @ManyToOne(() => User, (user) => user.addresses, { onDelete: "CASCADE" })
+  @ManyToOne(() => User, (user) => user.addresses)
   @JoinColumn({ name: "user_id" })
   user: User;
 
-  @ManyToOne(() => District, (district) => district.user_addresses, {
-    onDelete: "CASCADE",
-  })
+  // user_address.entity.ts
+  @ManyToOne(() => District, (district) => district.userAddresses)
   @JoinColumn({ name: "district_id" })
   district: District;
+
+  @OneToMany(() => Order, (order) => order.deliveryAddress)
+  orders: Order[];
 }

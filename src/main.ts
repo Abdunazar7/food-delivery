@@ -2,15 +2,18 @@ import { ValidationPipe } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import cookieParser from "cookie-parser";
 
 async function start() {
   try {
     const PORT = process.env.PORT || 3000;
     const app = await NestFactory.create(AppModule, {
-      logger: ["error", "warn", "log"],
+      logger: ["error", "warn"],
     });
 
     app.setGlobalPrefix("api");
+
+    app.use(cookieParser());
 
     app.useGlobalPipes(
       new ValidationPipe({

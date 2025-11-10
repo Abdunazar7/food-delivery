@@ -7,9 +7,9 @@ export class ItemCategory {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => MenuItem, (menuItem) => menuItem.id, { onDelete: "CASCADE" })
+  @ManyToOne(() => MenuItem, (menuItem) => menuItem.itemCategories)
   @JoinColumn({ name: "menu_item_id" })
-  menu_item: MenuItem;
+  menuItem: MenuItem;
 
   @ManyToOne(() => MenuCategory, (menuCategory) => menuCategory.id, {
     onDelete: "CASCADE",

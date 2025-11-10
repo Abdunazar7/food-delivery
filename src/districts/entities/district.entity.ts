@@ -18,15 +18,13 @@ export class District {
   @Column()
   name: string;
 
-  @ManyToOne(() => Region, (region) => region.districts, {
-    onDelete: "CASCADE",
-  })
+  @ManyToOne(() => Region, (region) => region.districts)
   @JoinColumn({ name: "region_id" })
   region: Region;
 
-  @OneToMany(() => UserAddress, (ua) => ua.district)
-  user_addresses: UserAddress[];
+  @OneToMany(() => UserAddress, (address) => address.district)
+  userAddresses: UserAddress[];
 
   @OneToMany(() => VendorAddress, (va) => va.district)
-  vendor_addresses: VendorAddress[];
+  vendorAddresses: VendorAddress[];
 }

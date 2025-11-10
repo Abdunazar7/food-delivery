@@ -45,7 +45,9 @@ export class VendorAddressesService {
   }
 
   findAll(): Promise<VendorAddress[]> {
-    return this.addressRepo.find({ relations: ["vendor", "district"] });
+    return this.addressRepo.find({
+      relations: ["vendor", "district"],
+    });
   }
 
   async findOne(id: number): Promise<VendorAddress> {

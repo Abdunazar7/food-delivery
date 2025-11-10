@@ -1,0 +1,1409 @@
+{
+  "info": {
+    "_postman_id": "a1b2c3d4-e5f6-7890-1234-abcdef012345",
+    "name": "Food Delivery API (DDL)",
+    "description": "Sizning NestJS API'ngiz uchun DDL asosida yaratilgan Postman kolleksiyasi",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "00000001"
+  },
+  "item": [
+    {
+      "name": "Admins",
+      "item": [
+        {
+          "name": "Create Admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Asosiy Admin\",\n  \"email\": \"admin@example.com\",\n  \"phone_number\": \"+998901234567\",\n  \"password_hash\": \"a_very_strong_hashed_password\",\n  \"is_creator\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admins",
+              "host": ["{{baseUrl}}"],
+              "path": ["admins"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Admins",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admins",
+              "host": ["{{baseUrl}}"],
+              "path": ["admins"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Admin",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admins/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["admins", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Admin",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Updated Admin Name\",\n  \"phone_number\": \"+998907654321\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/admins/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["admins", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Admin",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admins/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["admins", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"John Doe\",\n  \"email\": \"user@example.com\",\n  \"phone\": \"+998912345678\",\n  \"password_hash\": \"a_user_hashed_password\",\n  \"is_active\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"John Doe (Updated)\",\n  \"phone\": \"+998912223344\",\n  \"is_active\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Regions",
+      "item": [
+        {
+          "name": "Create Region",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Toshkent Shahri\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/regions",
+              "host": ["{{baseUrl}}"],
+              "path": ["regions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Regions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/regions",
+              "host": ["{{baseUrl}}"],
+              "path": ["regions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Region",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/regions/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["regions", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Region",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Toshkent Viloyati\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/regions/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["regions", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Region",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/regions/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["regions", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Districts",
+      "item": [
+        {
+          "name": "Create District",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"region_id\": 1,\n  \"name\": \"Yunusobod\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/districts",
+              "host": ["{{baseUrl}}"],
+              "path": ["districts"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Districts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/districts",
+              "host": ["{{baseUrl}}"],
+              "path": ["districts"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One District",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/districts/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["districts", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update District",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"region_id\": 1,\n  \"name\": \"Mirzo Ulug'bek\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/districts/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["districts", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete District",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/districts/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["districts", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User Addresses",
+      "item": [
+        {
+          "name": "Create User Address",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"district_id\": 1,\n  \"user_id\": 1,\n  \"name\": \"Uy\",\n  \"description\": \"Blok 5, kv 12\",\n  \"address\": \"Amir Temur ko'chasi, 10A\",\n  \"latitude\": 41.31107,\n  \"longitude\": 69.27977\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user-addresses",
+              "host": ["{{baseUrl}}"],
+              "path": ["user-addresses"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All User Addresses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/user-addresses",
+              "host": ["{{baseUrl}}"],
+              "path": ["user-addresses"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One User Address",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/user-addresses/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["user-addresses", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User Address",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ishxona\",\n  \"description\": \"Ofis 301\",\n  \"address\": \"Navoiy ko'chasi, 25\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/user-addresses/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["user-addresses", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User Address",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/user-addresses/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["user-addresses", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Vendors",
+      "item": [
+        {
+          "name": "Create Vendor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"admin_approved\": false,\n  \"name\": \"Evos\",\n  \"owner_email\": \"owner@evos.uz\",\n  \"owner_phone\": \"+998712001212\",\n  \"password_hash\": \"vendor_hashed_password\",\n  \"description\": \"Eng mazali lavashlar\",\n  \"logo_url\": \"https://evos.uz/logo.png\",\n  \"is_active\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/vendors",
+              "host": ["{{baseUrl}}"],
+              "path": ["vendors"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Vendors",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vendors",
+              "host": ["{{baseUrl}}"],
+              "path": ["vendors"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Vendor",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vendors/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["vendors", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Vendor",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"admin_approved\": true,\n  \"name\": \"Evos (Tasdiqlangan)\",\n  \"description\": \"Eng mazali va tez lavashlar\",\n  \"is_active\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/vendors/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["vendors", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Vendor",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vendors/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["vendors", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Vendor Addresses",
+      "item": [
+        {
+          "name": "Create Vendor Address",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vendor_id\": 1,\n  \"district_id\": 1,\n  \"delivery_radius_km\": 5,\n  \"opening_time\": \"09:00:00\",\n  \"closing_time\": \"23:00:00\",\n  \"is_open\": true,\n  \"address\": \"Yunusobod, Amir Temur ko'chasi, 10\",\n  \"location\": \"Evos Yunusobod filiali\",\n  \"latitude\": 41.31107,\n  \"longitude\": 69.27977\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/vendor-addresses",
+              "host": ["{{baseUrl}}"],
+              "path": ["vendor-addresses"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Vendor Addresses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vendor-addresses",
+              "host": ["{{baseUrl}}"],
+              "path": ["vendor-addresses"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Vendor Address",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vendor-addresses/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["vendor-addresses", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Vendor Address",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"delivery_radius_km\": 7,\n  \"is_open\": false,\n  \"closing_time\": \"22:00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/vendor-addresses/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["vendor-addresses", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Vendor Address",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/vendor-addresses/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["vendor-addresses", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Fast Food\",\n  \"description\": \"Burger, Lavash, Hot-dog\",\n  \"icon_url\": \"https://example.com/icons/fastfood.png\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ichimliklar\",\n  \"description\": \"Sovuq va issiq ichimliklar\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/categories/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Menu Categories",
+      "item": [
+        {
+          "name": "Create Menu Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Lavashlar\",\n  \"description\": \"Har xil turdagi lavashlar\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/menu-categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["menu-categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Menu Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/menu-categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["menu-categories"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Menu Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/menu-categories/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["menu-categories", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Menu Category",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Burgerlar\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/menu-categories/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["menu-categories", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Menu Category",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/menu-categories/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["menu-categories", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Menu Items",
+      "item": [
+        {
+          "name": "Create Menu Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vendor_id\": 1,\n  \"menu_category_id\": 1,\n  \"name\": \"Tovuqli Lavash\",\n  \"description\": \"Mazali tovuqli lavash, pishloq bilan\",\n  \"size\": \"medium\",\n  \"features\": \"Achchiq\",\n  \"price\": 25000.00,\n  \"calories\": 650,\n  \"image_url\": \"https://example.com/images/lavash.png\",\n  \"is_available\": true,\n  \"preparation_time_minutes\": 10\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/menu-items",
+              "host": ["{{baseUrl}}"],
+              "path": ["menu-items"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Menu Items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/menu-items",
+              "host": ["{{baseUrl}}"],
+              "path": ["menu-items"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Menu Item",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/menu-items/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["menu-items", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Menu Item",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Mol go'shtli Lavash\",\n  \"price\": 28000.00,\n  \"is_available\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/menu-items/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["menu-items", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Menu Item",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/menu-items/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["menu-items", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Couriers",
+      "item": [
+        {
+          "name": "Create Courier",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Ali Valiev\",\n  \"phone\": \"+998998765432\",\n  \"email\": \"courier@example.com\",\n  \"password_hash\": \"courier_hashed_password\",\n  \"vehicle_type\": \"bike\",\n  \"license_number\": \"A123B\",\n  \"is_active\": true\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/couriers",
+              "host": ["{{baseUrl}}"],
+              "path": ["couriers"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Couriers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/couriers",
+              "host": ["{{baseUrl}}"],
+              "path": ["couriers"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Courier",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/couriers/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["couriers", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Courier",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"full_name\": \"Ali Valiev (Updated)\",\n  \"vehicle_type\": \"car\",\n  \"is_active\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/couriers/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["couriers", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Courier",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/couriers/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["couriers", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 1,\n  \"vendor_id\": 1,\n  \"vendor_address_id\": 1,\n  \"delivery_address_id\": 1,\n  \"status\": \"pending\",\n  \"payment_status\": \"unpaid\",\n  \"total_amount\": 50000.00,\n  \"delivery_fee\": 7000.00,\n  \"tip_amount\": 3000.00\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Order",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Order Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"accepted\",\n  \"courier_id\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Order",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/orders/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["orders", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Order Items",
+      "item": [
+        {
+          "name": "Create Order Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order_id\": 1,\n  \"menu_item_id\": 1,\n  \"quantity\": 2,\n  \"unit_price\": 25000.00,\n  \"notes\": \"Iltimos, pishloq qo'shmang\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order-items",
+              "host": ["{{baseUrl}}"],
+              "path": ["order-items"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Order Items",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/order-items",
+              "host": ["{{baseUrl}}"],
+              "path": ["order-items"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Order Item",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/order-items/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["order-items", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Order Item",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 3,\n  \"notes\": \"Qo'shimcha sous bilan\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/order-items/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["order-items", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Order Item",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/order-items/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["order-items", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Payments",
+      "item": [
+        {
+          "name": "Create Payment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order_id\": 1,\n  \"amount\": 60000.00,\n  \"currency\": \"UZS\",\n  \"method\": \"card\",\n  \"provider\": \"Click\",\n  \"status\": \"pending\",\n  \"paid_at\": \"2025-11-10T12:00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payments",
+              "host": ["{{baseUrl}}"],
+              "path": ["payments"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Payments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payments",
+              "host": ["{{baseUrl}}"],
+              "path": ["payments"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Payment",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payments/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["payments", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Payment Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"success\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/payments/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["payments", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Payment",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/payments/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["payments", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "Create Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": 1,\n  \"order_id\": 1,\n  \"target_type\": \"vendor\",\n  \"target_id\": 1,\n  \"rating\": 5,\n  \"comment\": \"Juda zo'r va tez yetkazib berishdi!\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reviews",
+              "host": ["{{baseUrl}}"],
+              "path": ["reviews"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Reviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reviews",
+              "host": ["{{baseUrl}}"],
+              "path": ["reviews"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get One Review",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["reviews", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Review",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 4,\n  \"comment\": \"Yaxshi, lekin biroz sovib qolibdi.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/reviews/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["reviews", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Review",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reviews/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["reviews", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Many-to-Many Links",
+      "item": [
+        {
+          "name": "Vendor Category (Link)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vendor_id\": 1,\n  \"category_id\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/vendor-category",
+              "host": ["{{baseUrl}}"],
+              "path": ["vendor-category"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Item Category (Link)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"menu_item_id\": 1,\n  \"category_id\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/item-category",
+              "host": ["{{baseUrl}}"],
+              "path": ["item-category"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Courier Assignments",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"courier_id\": 1,\n  \"order_id\": 1,\n  \"status\": \"assigned\",\n  \"assigned_at\": \"2025-11-10T12:05:00\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/courier-assignments",
+              "host": ["{{baseUrl}}"],
+              "path": ["courier-assignments"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000/api",
+      "type": "string"
+    }
+  ]
+}

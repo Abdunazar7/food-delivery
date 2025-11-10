@@ -18,18 +18,8 @@ export class AdminsService {
   ) {}
 
   async create(createAdminDto: CreateAdminDto): Promise<Admin> {
-    const {
-      email,
-      password,
-      confirm_password,
-      full_name,
-      phone_number,
-      is_creator,
-    } = createAdminDto;
-
-    if (password !== confirm_password) {
-      throw new BadRequestException("Passwords do not match");
-    }
+    const { email, password, full_name, phone_number, is_creator } =
+      createAdminDto;
 
     const exists = await this.adminRepo.findOne({ where: { email } });
     if (exists) throw new BadRequestException("Email already exists");
@@ -61,10 +51,7 @@ export class AdminsService {
   async update(id: number, updateAdminDto: UpdateAdminDto): Promise<Admin> {
     const admin = await this.findOne(id);
 
-    if (updateAdminDto.password && updateAdminDto.confirm_password) {
-      if (updateAdminDto.password !== updateAdminDto.confirm_password) {
-        throw new BadRequestException("Passwords do not match");
-      }
+    if (updateAdminDto.password) {
       const hashed = await bcrypt.hash(updateAdminDto.password, 7);
       admin.password_hash = hashed;
     }
@@ -73,8 +60,13 @@ export class AdminsService {
     return this.adminRepo.save(admin);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: number): Promise<number> {
     const admin = await this.findOne(id);
+    if (!admin) {
+      throw new NotFoundException(`Admin with id ${id} not found`);
+    }
+    const deletedId = admin.id;
     await this.adminRepo.remove(admin);
+    return id;
   }
 }

@@ -32,13 +32,15 @@ export class DistrictsService {
   }
 
   findAll(): Promise<District[]> {
-    return this.districtRepo.find({ relations: ["region"] });
+    return this.districtRepo.find({
+      relations: ["region", "userAddresses", "vendorAddresses"],
+    });
   }
 
   async findOne(id: number): Promise<District> {
     const district = await this.districtRepo.findOne({
       where: { id },
-      relations: ["region"],
+      relations: ["region", "userAddresses", "vendorAddresses"],
     });
     if (!district)
       throw new NotFoundException(`District with id ${id} not found`);

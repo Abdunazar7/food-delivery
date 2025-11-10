@@ -18,11 +18,11 @@ export class MenuCategoryService {
   }
 
   findAll(): Promise<MenuCategory[]> {
-    return this.categoryRepo.find();
+    return this.categoryRepo.find({ relations: ["items"] });
   }
 
   async findOne(id: number): Promise<MenuCategory> {
-    const category = await this.categoryRepo.findOne({ where: { id } });
+    const category = await this.categoryRepo.findOne({ where: { id }, relations: ["items"] });
     if (!category)
       throw new NotFoundException(`MenuCategory with id ${id} not found`);
     return category;

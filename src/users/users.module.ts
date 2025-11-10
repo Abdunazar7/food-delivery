@@ -8,6 +8,9 @@ import { User } from "./entities/user.entity";
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [UsersController],
   providers: [UsersService],
-  exports: [UsersService],
+  // MUHIM O'ZGATIRISH: User entity'sini eksport qiling
+  // shunda AuthModule ham Repository<User> ga kirisha oladi.
+  exports: [UsersService, TypeOrmModule],
+  // Yoki TypeOrmModule'ni eksport qilamiz.
 })
 export class UsersModule {}

@@ -27,15 +27,6 @@ export class CreateVendorDto {
   @IsString()
   password: string;
 
-  @ApiProperty({ example: "password123" })
-  @IsOptional()
-  @IsString()
-  confirm_password?: string;
-
-  @ApiProperty({ example: false })
-  @IsBoolean()
-  admin_approved: boolean;
-
   @ApiProperty({ example: true })
   @IsBoolean()
   is_active: boolean;

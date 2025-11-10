@@ -11,6 +11,15 @@ import { VendorAddressesModule } from './vendor_addresses/vendor_addresses.modul
 import { MenuItemsModule } from './menu-items/menu-items.module';
 import { MenuCategoryModule } from './menu_category/menu_category.module';
 import { ItemCategoryModule } from './item_category/item_category.module';
+import { CategoriesModule } from './categories/categories.module';
+import { VendorCategoryModule } from './vendor_category/vendor_category.module';
+import { CouriersModule } from './couriers/couriers.module';
+import { OrdersModule } from './orders/orders.module';
+import { OrderItemsModule } from './order_items/order_items.module';
+import { CourierAssignmentsModule } from './courier_assignments/courier_assignments.module';
+import { PaymentsModule } from './payments/payments.module';
+import { ReviewsModule } from './reviews/reviews.module';
+import { AuthModule } from './auth/auth.module';
 
 
 
@@ -29,7 +38,7 @@ import { ItemCategoryModule } from './item_category/item_category.module';
       database: process.env.DB_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
-      logging: true,
+      logging: false,
     }),
 
     UsersModule,
@@ -51,6 +60,24 @@ import { ItemCategoryModule } from './item_category/item_category.module';
     MenuCategoryModule,
 
     ItemCategoryModule,
+
+    CategoriesModule,
+
+    VendorCategoryModule,
+
+    CouriersModule,
+
+    OrdersModule,
+
+    OrderItemsModule,
+
+    CourierAssignmentsModule,
+
+    PaymentsModule,
+
+    ReviewsModule,
+
+    AuthModule,
 
   ],
 })

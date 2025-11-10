@@ -4,9 +4,11 @@ import {
   Column,
   ManyToOne,
   JoinColumn,
+  OneToMany,
 } from "typeorm";
 import { Vendor } from "../../vendors/entities/vendor.entity";
 import { District } from "../../districts/entities/district.entity";
+import { Order } from "../../orders/entities/order.entity";
 
 @Entity("vendor_addresses")
 export class VendorAddress {
@@ -37,15 +39,16 @@ export class VendorAddress {
   @Column({ default: true })
   is_open: boolean;
 
-  @ManyToOne(() => Vendor, (vendor) => vendor.addresses, {
-    onDelete: "CASCADE",
-  })
+  @ManyToOne(() => Vendor, (vendor) => vendor.addresses)
   @JoinColumn({ name: "vendor_id" })
   vendor: Vendor;
 
-  @ManyToOne(() => District, (district) => district.vendor_addresses, {
+  @ManyToOne(() => District, (district) => district.vendorAddresses, {
     onDelete: "CASCADE",
   })
   @JoinColumn({ name: "district_id" })
   district: District;
+
+  @OneToMany(() => Order, (order) => order.deliveryAddress)
+  orders: Order[];
 }

@@ -26,7 +26,7 @@ export class Admin {
   @Column({ default: false })
   is_creator: boolean;
 
-  @Column({ type: "bigint" })
+  @Column()
   refreshToken_hash: string;
 
   @CreateDateColumn({

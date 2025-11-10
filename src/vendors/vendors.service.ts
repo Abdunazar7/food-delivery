@@ -23,25 +23,22 @@ export class VendorsService {
       owner_email,
       owner_phone,
       password,
-      confirm_password,
-      admin_approved,
       is_active,
       description,
       logo_url,
     } = dto;
 
-    if (password && confirm_password && password !== confirm_password) {
-      throw new BadRequestException("Passwords do not match");
+    if (!password) {
+      throw new BadRequestException("password is required");
     }
 
-    const passwordHash = await bcrypt.hash(dto.password, 7)
+    const passwordHash = await bcrypt.hash(dto.password, 7);
 
     const vendor = this.vendorRepo.create({
       name,
       owner_email,
       owner_phone,
       password_hash: password,
-      admin_approved,
       is_active,
       description,
       logo_url,
@@ -52,14 +49,14 @@ export class VendorsService {
 
   findAll(): Promise<Vendor[]> {
     return this.vendorRepo.find({
-      relations: ["addresses", "categories", "menu_items"],
+      relations: ["addresses", "menuItems", "categories", "orders", "reviews"],
     });
   }
 
   async findOne(id: number): Promise<Vendor> {
     const vendor = await this.vendorRepo.findOne({
       where: { id },
-      relations: ["addresses", "categories", "menu_items"],
+      relations: ["addresses", "menuItems", "categories", "orders", "reviews"],
     });
     if (!vendor) throw new NotFoundException(`Vendor with id ${id} not found`);
     return vendor;
@@ -68,9 +65,9 @@ export class VendorsService {
   async update(id: number, dto: UpdateVendorDto): Promise<Vendor> {
     const vendor = await this.findOne(id);
 
-    if (dto.password && dto.confirm_password) {
-      if (dto.password !== dto.confirm_password) {
-        throw new BadRequestException("Passwords do not match");
+    if (dto.password) {
+      if (dto.password) {
+        throw new BadRequestException("Passwords is required");
       }
       vendor.password_hash = await bcrypt.hash(dto.password, 7);
     }
@@ -79,8 +76,13 @@ export class VendorsService {
     return this.vendorRepo.save(vendor);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: number): Promise<number> {
     const vendor = await this.findOne(id);
+    if (!vendor) {
+      throw new NotFoundException(`Vendor with id ${id} not found`);
+    }
+    const Id = vendor.id
     await this.vendorRepo.remove(vendor);
+    return id
   }
 }

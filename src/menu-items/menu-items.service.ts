@@ -27,13 +27,15 @@ export class MenuItemsService {
   }
 
   findAll(): Promise<MenuItem[]> {
-    return this.menuItemRepo.find({ relations: ["vendor"] });
+    return this.menuItemRepo.find({
+      relations: ["vendor", "orderItems", "itemCategories"],
+    });
   }
 
   async findOne(id: number): Promise<MenuItem> {
     const menuItem = await this.menuItemRepo.findOne({
       where: { id },
-      relations: ["vendor"],
+      relations: ["vendor", "orderItems", "itemCategories"],
     });
     if (!menuItem)
       throw new NotFoundException(`MenuItem with id ${id} not found`);

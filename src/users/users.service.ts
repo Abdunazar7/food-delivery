@@ -42,17 +42,16 @@ export class UsersService {
     return this.userRepository.save(user);
   }
 
-  findAll(): Promise<User[]> {
-    return this.userRepository.find()
-    // return this.userRepository.find({
-    //   relations: ["addresses", "orders", "reviews"],
-    // });
+  findAll() {
+    return this.userRepository.find({
+      relations: ["addresses", "orders", "reviews"],
+    });
   }
 
-  async findOne(id: number): Promise<User> {
+  async findOne(id: number) {
     const user = await this.userRepository.findOne({
       where: { id },
-      // relations: ["addresses", "orders", "reviews"],
+      relations: ["addresses", "orders", "reviews"],
     });
     if (!user) throw new NotFoundException(`User with id ${id} not found`);
     return user;
@@ -69,8 +68,13 @@ export class UsersService {
     return this.userRepository.save(user);
   }
 
-  async remove(id: number): Promise<void> {
-    const user = await this.findOne(id);
+  async remove(id: number): Promise<number> {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new NotFoundException(`User with id ${id} not found`);
+    }
+    const deletedUserId = user.id;
     await this.userRepository.remove(user);
+    return deletedUserId;
   }
 }

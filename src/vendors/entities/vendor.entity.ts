@@ -8,15 +8,14 @@ import {
 } from "typeorm";
 import { VendorAddress } from "../../vendor_addresses/entities/vendor_address.entity";
 import { MenuItem } from "../../menu-items/entities/menu-item.entity";
-// import { VendorCategory } from "../../vendor_category/entities/vendor_category.entity";
+import { Order } from "../../orders/entities/order.entity";
+import { VendorCategory } from "../../vendor_category/entities/vendor_category.entity";
+import { Review } from "../../reviews/entities/review.entity";
 
 @Entity("vendors")
 export class Vendor {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @Column({ default: false })
-  admin_approved: boolean;
 
   @Column()
   name: string;
@@ -57,9 +56,15 @@ export class Vendor {
   @OneToMany(() => VendorAddress, (address) => address.vendor)
   addresses: VendorAddress[];
 
-  // @OneToMany(() => VendorCategory, (vc) => vc.vendor)
-  // categories: VendorCategory[];
+  @OneToMany(() => Order, (order) => order.vendor)
+  orders: Order[];
 
   @OneToMany(() => MenuItem, (item) => item.vendor)
-  menu_items: MenuItem[];
+  menuItems: MenuItem[];
+
+  @OneToMany(() => VendorCategory, (vc) => vc.vendor)
+  vendorCategories: VendorCategory[];
+
+  @OneToMany(() => Review, (review) => review.vendor)
+  reviews: Review[];
 }

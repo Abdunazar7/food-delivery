@@ -5,17 +5,13 @@ import {
   IsOptional,
   IsBoolean,
   IsEnum,
+  isString,
 } from "class-validator";
 
 export class CreateMenuItemDto {
   @ApiProperty({ example: 1 })
   @IsNumber()
   vendor_id: number;
-
-  @ApiProperty({ example: "Pizza" })
-  @IsOptional()
-  @IsString()
-  category_name?: string;
 
   @ApiProperty({ example: "Margherita" })
   @IsString()
@@ -27,6 +23,7 @@ export class CreateMenuItemDto {
   description?: string;
 
   @ApiProperty({ example: "medium" })
+  @IsString()
   size: string;
 
   @ApiProperty({ example: "Extra cheese, gluten-free" })

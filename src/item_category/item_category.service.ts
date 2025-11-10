@@ -36,7 +36,7 @@ export class ItemCategoryService {
       );
 
     const itemCategory = this.itemCategoryRepo.create({
-      menu_item: menuItem,
+      menuItem: menuItem,
       menu_category: menuCategory,
     });
     return this.itemCategoryRepo.save(itemCategory);
@@ -44,14 +44,14 @@ export class ItemCategoryService {
 
   findAll(): Promise<ItemCategory[]> {
     return this.itemCategoryRepo.find({
-      relations: ["menu_item", "menu_category"],
+      relations: ["menuItem", "category"],
     });
   }
 
   async findOne(id: number): Promise<ItemCategory> {
     const itemCategory = await this.itemCategoryRepo.findOne({
       where: { id },
-      relations: ["menu_item", "menu_category"],
+      relations: ["menuItem", "category"],
     });
     if (!itemCategory)
       throw new NotFoundException(`ItemCategory with id ${id} not found`);
@@ -69,7 +69,7 @@ export class ItemCategoryService {
         throw new NotFoundException(
           `MenuItem with id ${dto.menu_item_id} not found`
         );
-      itemCategory.menu_item = menuItem;
+      itemCategory.menuItem = menuItem;
     }
 
     if (dto.category_id) {
