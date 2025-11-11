@@ -11,10 +11,10 @@ export class Courier {
   @Column({ nullable: true })
   full_name: string;
 
-  @Column({ nullable: true })
+  @Column()
   phone: string;
 
-  @Column({ nullable: true })
+  @Column({ unique: true })
   email: string;
 
   @Column({ nullable: true })

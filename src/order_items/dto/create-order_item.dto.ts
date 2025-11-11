@@ -14,10 +14,6 @@ export class CreateOrderItemDto {
   @IsNumber()
   quantity: number;
 
-  @ApiProperty({ example: 25000 })
-  @IsNumber()
-  unit_price: number;
-
   @ApiProperty({ example: "No onions, please" })
   @IsString()
   notes: string;

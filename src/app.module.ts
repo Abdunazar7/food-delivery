@@ -21,6 +21,7 @@ import { PaymentsModule } from './payments/payments.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { AuthModule } from './auth/auth.module';
 import { MailModule } from './mail/mail.module';
+import { ReportsModule } from './reports/reports.module';
 
 
 
@@ -82,6 +83,8 @@ import { MailModule } from './mail/mail.module';
     AuthModule,
 
     MailModule,
+
+    ReportsModule,
 
   ],
 })

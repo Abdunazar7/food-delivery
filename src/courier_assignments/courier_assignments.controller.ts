@@ -22,7 +22,7 @@ import { Roles, UserRole } from "../app.constants";
 export class CourierAssignmentsController {
   constructor(private readonly service: CourierAssignmentsService) {}
 
-  @Roles(UserRole.ADMIN)
+  @Roles(UserRole.ADMIN, UserRole.COURIER)
   @Post()
   create(@Body() dto: CreateCourierAssignmentDto) {
     return this.service.create(dto);

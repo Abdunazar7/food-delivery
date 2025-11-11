@@ -27,8 +27,8 @@ import { CreatorGuard } from "../common/guards/creator.guard";
 export class AdminsController {
   constructor(private readonly adminsService: AdminsService) {}
 
-  // @Roles(UserRole.ADMIN)
-  // @UseGuards(CreatorGuard)
+  @Roles(UserRole.ADMIN)
+  @UseGuards(CreatorGuard)
   @Post()
   @ApiOperation({ summary: "Create a new admin" })
   @ApiResponse({ status: 201, type: Admin })

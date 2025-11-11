@@ -15,7 +15,6 @@ export class OrderItemsService {
   create(dto: CreateOrderItemDto) {
     const item = this.orderItemRepo.create({
       quantity: dto.quantity,
-      unit_price: dto.unit_price,
       notes: dto.notes,
       order: { id: dto.order_id } as any,
       menuItem: { id: dto.menu_item_id } as any,

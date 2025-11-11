@@ -78,14 +78,11 @@ export class AuthService {
     res.clearCookie("refreshToken");
   }
 
-  // =============================
-  // 🧍 USER AUTH
-  // =============================
   async signup(createUserDto: CreateUserDto) {
     const candidate = await this.userRepository.findOne({
       where: { email: createUserDto.email },
     });
-    if (candidate) throw new ConflictException("Bunday foydalanuvchi mavjud");
+    if (candidate) throw new ConflictException("User already exists");
 
     const newUser = await this.userService.create(createUserDto);
     return {
@@ -101,13 +98,13 @@ export class AuthService {
     const user = await this.userRepository.findOne({
       where: { email: signInUserDto.email },
     });
-    if (!user) throw new UnauthorizedException("Email yoki parol noto‘g‘ri");
+    if (!user) throw new UnauthorizedException("Invalid email or password");
 
     const valid = await bcrypt.compare(
       signInUserDto.password,
       user.password_hash
     );
-    if (!valid) throw new UnauthorizedException("Email yoki parol noto‘g‘ri");
+    if (!valid) throw new UnauthorizedException("Invalid email or password");
 
     const { accessToken, refreshToken } = await this.generateTokens(
       user,
@@ -116,7 +113,7 @@ export class AuthService {
     await this.saveRefreshToken(this.userRepository, user.id, refreshToken);
     this.setCookie(res, refreshToken);
 
-    return { message: "User tizimga kirdi", userId: user.id, accessToken };
+    return { message: "User logged in", userId: user.id, accessToken };
   }
 
   async refreshUser(
@@ -137,9 +134,6 @@ export class AuthService {
     return this.signoutGeneric(this.userRepository, userId, res);
   }
 
-  // =============================
-  // 👨‍💼 ADMIN AUTH
-  // =============================
   async signinAdmin(
     signInUserDto: SignInUserDto,
     res: Response
@@ -147,13 +141,13 @@ export class AuthService {
     const admin = await this.adminRepository.findOne({
       where: { email: signInUserDto.email },
     });
-    if (!admin) throw new UnauthorizedException("Email yoki parol noto‘g‘ri");
+    if (!admin) throw new UnauthorizedException("Invalid email or password");
 
     const valid = await bcrypt.compare(
       signInUserDto.password,
       admin.password_hash
     );
-    if (!valid) throw new UnauthorizedException("Email yoki parol noto‘g‘ri");
+    if (!valid) throw new UnauthorizedException("Invalid email or password");
 
     const { accessToken, refreshToken } = await this.generateTokens(
       admin,
@@ -162,7 +156,7 @@ export class AuthService {
     await this.saveRefreshToken(this.adminRepository, admin.id, refreshToken);
     this.setCookie(res, refreshToken);
 
-    return { message: "Admin tizimga kirdi", userId: admin.id, accessToken };
+    return { message: "Admin logged in", userId: admin.id, accessToken };
   }
 
   async refreshAdmin(
@@ -183,9 +177,6 @@ export class AuthService {
     return this.signoutGeneric(this.adminRepository, adminId, res);
   }
 
-  // =============================
-  // 🏪 VENDOR AUTH
-  // =============================
   async signinVendor(
     signInUserDto: SignInUserDto,
     res: Response
@@ -193,13 +184,13 @@ export class AuthService {
     const vendor = await this.vendorRepository.findOne({
       where: { owner_email: signInUserDto.email },
     });
-    if (!vendor) throw new UnauthorizedException("Email yoki parol noto‘g‘ri");
+    if (!vendor) throw new UnauthorizedException("Invalid email or password");
 
     const valid = await bcrypt.compare(
       signInUserDto.password,
       vendor.password_hash
     );
-    if (!valid) throw new UnauthorizedException("Email yoki parol noto‘g‘ri");
+    if (!valid) throw new UnauthorizedException("Invalid email or password");
 
     const { accessToken, refreshToken } = await this.generateTokens(
       vendor,
@@ -208,7 +199,7 @@ export class AuthService {
     await this.saveRefreshToken(this.vendorRepository, vendor.id, refreshToken);
     this.setCookie(res, refreshToken);
 
-    return { message: "Vendor tizimga kirdi", userId: vendor.id, accessToken };
+    return { message: "Vendor logged in", userId: vendor.id, accessToken };
   }
 
   async refreshVendor(
@@ -229,9 +220,6 @@ export class AuthService {
     return this.signoutGeneric(this.vendorRepository, vendorId, res);
   }
 
-  // =============================
-  // 🚴 COURIER AUTH
-  // =============================
   async signinCourier(
     signInUserDto: SignInUserDto,
     res: Response
@@ -239,13 +227,13 @@ export class AuthService {
     const courier = await this.courierRepository.findOne({
       where: { email: signInUserDto.email },
     });
-    if (!courier) throw new UnauthorizedException("Email yoki parol noto‘g‘ri");
+    if (!courier) throw new UnauthorizedException("Invalid email or password");
 
     const valid = await bcrypt.compare(
       signInUserDto.password,
       courier.password_hash
     );
-    if (!valid) throw new UnauthorizedException("Email yoki parol noto‘g‘ri");
+    if (!valid) throw new UnauthorizedException("Invalid email or password");
 
     const { accessToken, refreshToken } = await this.generateTokens(
       courier,
@@ -259,7 +247,7 @@ export class AuthService {
     this.setCookie(res, refreshToken);
 
     return {
-      message: "Courier tizimga kirdi",
+      message: "Courier logged in",
       userId: courier.id,
       accessToken,
     };
@@ -283,9 +271,7 @@ export class AuthService {
     return this.signoutGeneric(this.courierRepository, courierId, res);
   }
 
-  // =============================
-  // ♻️ GENERIC REFRESH & SIGNOUT
-  // =============================
+  //  GENERIC REFRESH AND SIGNOUT
   private async refreshGeneric(
     repo: Repository<any>,
     id: number,
@@ -297,18 +283,18 @@ export class AuthService {
       const decoded = this.jwtService.verify(refreshToken, {
         secret: process.env.REFRESH_TOKEN_KEY,
       });
-      if (id !== decoded.id) throw new ForbiddenException("ID mos emas");
+      if (id !== decoded.id) throw new ForbiddenException("ID dismatch");
 
       const entity = await repo.findOne({ where: { id } });
       if (!entity || !entity.refreshToken_hash) {
-        throw new ForbiddenException("Ruxsat yo‘q");
+        throw new ForbiddenException("Forbidden");
       }
 
       const match = await bcrypt.compare(
         refreshToken,
         entity.refreshToken_hash
       );
-      if (!match) throw new ForbiddenException("Refresh token noto‘g‘ri");
+      if (!match) throw new ForbiddenException("Invalid refresh token");
 
       const { accessToken, refreshToken: newToken } = await this.generateTokens(
         entity,
@@ -317,10 +303,10 @@ export class AuthService {
       await this.saveRefreshToken(repo, id, newToken);
       this.setCookie(res, newToken);
 
-      return { message: "Token yangilandi", userId: id, accessToken };
+      return { message: "Tokens refreshed", userId: id, accessToken };
     } catch (e) {
       throw new ForbiddenException(
-        "Refresh token muddati tugagan yoki noto‘g‘ri"
+        "Token expired or invalid"
       );
     }
   }
@@ -332,7 +318,7 @@ export class AuthService {
   ): Promise<boolean> {
     const result = await repo.update({ id }, { refreshToken_hash: "" });
     if (result.affected === 0) {
-      throw new ForbiddenException("Entity topilmadi yoki chiqilgan");
+      throw new ForbiddenException("Already singout or token not found");
     }
     this.clearCookie(res);
     return true;
