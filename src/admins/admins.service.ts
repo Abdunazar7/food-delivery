@@ -1,5 +1,6 @@
 import {
   BadRequestException,
+  ForbiddenException,
   Injectable,
   NotFoundException,
 } from "@nestjs/common";
@@ -23,6 +24,17 @@ export class AdminsService {
 
     const exists = await this.adminRepo.findOne({ where: { email } });
     if (exists) throw new BadRequestException("Email already exists");
+
+    if (is_creator) {
+      const creatorExists = await this.adminRepo.findOne({
+        where: { is_creator: true },
+      });
+      if (creatorExists) {
+        throw new BadRequestException(
+          "Tizimda faqat bitta 'is_creator' Admin bo'lishi mumkin. Yangi Creator yaratish mumkin emas."
+        );
+      }
+    }
 
     const hashedPassword = await bcrypt.hash(password, 7);
 
@@ -51,6 +63,19 @@ export class AdminsService {
   async update(id: number, updateAdminDto: UpdateAdminDto): Promise<Admin> {
     const admin = await this.findOne(id);
 
+    // ✅ MAXSUS TEKSHIRUV: Agar updateAdminDto.is_creator true bo'lsa
+    if (updateAdminDto.is_creator === true && !admin.is_creator) {
+      const creatorExists = await this.adminRepo.findOne({
+        where: { is_creator: true },
+      });
+      // Agar o'zgartirilayotgan admin creator bo'lmasa, lekin boshqasi allaqachon mavjud bo'lsa
+      if (creatorExists && creatorExists.id !== id) {
+        throw new BadRequestException(
+          "Tizimda faqat bitta 'is_creator' Admin bo'lishi mumkin. Boshqa adminni Creator qilib o'zgartirish mumkin emas."
+        );
+      }
+    }
+
     if (updateAdminDto.password) {
       const hashed = await bcrypt.hash(updateAdminDto.password, 7);
       admin.password_hash = hashed;
@@ -65,6 +90,13 @@ export class AdminsService {
     if (!admin) {
       throw new NotFoundException(`Admin with id ${id} not found`);
     }
+    // ✅ MAXSUS TEKSHIRUV: Creator adminni o'chirishga ruxsat yo'q
+    if (admin.is_creator) {
+      throw new ForbiddenException(
+        "Creator (asosiy) Adminni o'chirish taqiqlanadi."
+      );
+    }
+
     const deletedId = admin.id;
     await this.adminRepo.remove(admin);
     return id;

@@ -32,14 +32,17 @@ export class AuthService {
     private readonly userService: UsersService
   ) {}
 
-  // ✅ 1. TOKEN GENERATION
   private async generateTokens(entity: any, role: string): Promise<Tokens> {
     const payload: JwtPayload = {
       id: entity.id,
       email: entity.email || entity.owner_email,
       is_active: entity.is_active,
-      role, // 🔥 rolni qo'shdik
+      role,
     };
+
+    if (role === "admin" && entity.is_creator !== undefined) {
+      (payload as any).is_creator = entity.is_creator;
+    }
 
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(payload, {
@@ -85,7 +88,10 @@ export class AuthService {
     if (candidate) throw new ConflictException("Bunday foydalanuvchi mavjud");
 
     const newUser = await this.userService.create(createUserDto);
-    return { message: "Foydalanuvchi yaratildi", userId: newUser.id };
+    return {
+      message: "User created, please verify your email",
+      userId: newUser.id,
+    };
   }
 
   async signinUser(

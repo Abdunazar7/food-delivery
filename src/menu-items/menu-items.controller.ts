@@ -7,18 +7,25 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  UseGuards,
+  Put,
 } from "@nestjs/common";
 import { ApiTags, ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { MenuItemsService } from "./menu-items.service";
 import { MenuItem } from "./entities/menu-item.entity";
 import { CreateMenuItemDto } from "./dto/create-menu-item.dto";
 import { UpdateMenuItemDto } from "./dto/update-menu-item.dto";
+import { RolesGuard } from "../common/guards/roles.guard";
+import { AccessTokenGuard } from "../common/guards";
+import { Roles, UserRole } from "../app.constants";
 
 @ApiTags("Menu Items")
 @Controller("menu-items")
 export class MenuItemsController {
   constructor(private readonly menuItemsService: MenuItemsService) {}
 
+  @Roles(UserRole.ADMIN, UserRole.VENDOR)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Post()
   @ApiOperation({ summary: "Create a new menu item" })
   @ApiResponse({ status: 201, type: MenuItem })
@@ -40,7 +47,9 @@ export class MenuItemsController {
     return this.menuItemsService.findOne(id);
   }
 
-  @Patch(":id")
+  @Roles(UserRole.ADMIN, UserRole.VENDOR)
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  @Put(":id")
   @ApiOperation({ summary: "Update menu item" })
   @ApiResponse({ status: 200, type: MenuItem })
   update(
@@ -50,6 +59,8 @@ export class MenuItemsController {
     return this.menuItemsService.update(id, dto);
   }
 
+  @Roles(UserRole.ADMIN, UserRole.VENDOR)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Delete(":id")
   @ApiOperation({ summary: "Delete menu item" })
   @ApiResponse({ status: 204 })

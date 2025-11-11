@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  UseGuards,
 } from "@nestjs/common";
 import { ReviewsService } from "./reviews.service";
 import { CreateReviewDto } from "./dto/create-review.dto";
@@ -18,12 +19,17 @@ import {
   ApiParam,
   ApiBody,
 } from "@nestjs/swagger";
+import { Roles, UserRole } from "../app.constants";
+import { AccessTokenGuard } from "../common/guards";
+import { RolesGuard } from "../common/guards/roles.guard";
 
 @ApiTags("Reviews")
 @Controller("reviews")
 export class ReviewsController {
   constructor(private readonly reviewsService: ReviewsService) {}
 
+  @Roles(UserRole.USER)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Post()
   @ApiOperation({ summary: "Create a new review" })
   @ApiResponse({ status: 201, description: "Review successfully created." })
@@ -48,6 +54,8 @@ export class ReviewsController {
     return this.reviewsService.findOne(id);
   }
 
+  @Roles(UserRole.ADMIN, UserRole.USER)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Patch(":id")
   @ApiOperation({ summary: "Update review by ID" })
   @ApiParam({ name: "id", example: 1, description: "Review ID" })
@@ -58,6 +66,8 @@ export class ReviewsController {
     return this.reviewsService.update(id, dto);
   }
 
+  @Roles(UserRole.ADMIN, UserRole.USER)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Delete(":id")
   @ApiOperation({ summary: "Delete review by ID" })
   @ApiParam({ name: "id", example: 1, description: "Review ID" })

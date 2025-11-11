@@ -7,7 +7,7 @@ export const winstonConfig = {
       format: winston.format.combine(
         // winston.format.label({ label: "PrismaJon" }),
         winston.format.timestamp(),
-        utilities.format.nestLike("PrismaJon")
+        utilities.format.nestLike("Food-Delivery-API")
         // winston.format.printf(({ level, message, label, timestamp }) => {
         //   return `${timestamp} [${label}] ${level}: ${message}`;
         // })
@@ -17,7 +17,7 @@ export const winstonConfig = {
       filename: "logs/combine.log",
       level: "info",
       format: winston.format.combine(
-        winston.format.label({ label: "PrismaJon" }),
+        winston.format.label({ label: "Food-Delivery-API" }),
         winston.format.timestamp(),
         winston.format.json()
       ),
@@ -26,7 +26,7 @@ export const winstonConfig = {
       filename: "logs/error.log",
       level: "error",
       format: winston.format.combine(
-        winston.format.label({ label: "PrismaJon" }),
+        winston.format.label({ label: "Food-Delivery-API" }),
         winston.format.timestamp(),
         winston.format.json()
       ),

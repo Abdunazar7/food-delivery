@@ -20,6 +20,7 @@ import { CourierAssignmentsModule } from './courier_assignments/courier_assignme
 import { PaymentsModule } from './payments/payments.module';
 import { ReviewsModule } from './reviews/reviews.module';
 import { AuthModule } from './auth/auth.module';
+import { MailModule } from './mail/mail.module';
 
 
 
@@ -38,6 +39,7 @@ import { AuthModule } from './auth/auth.module';
       database: process.env.DB_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
+      // dropSchema: true,
       logging: false,
     }),
 
@@ -78,6 +80,8 @@ import { AuthModule } from './auth/auth.module';
     ReviewsModule,
 
     AuthModule,
+
+    MailModule,
 
   ],
 })

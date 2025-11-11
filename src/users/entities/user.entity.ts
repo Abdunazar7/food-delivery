@@ -10,6 +10,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { UserAddress } from "../../user_addresses/entities/user_address.entity";
 import { Order } from "../../orders/entities/order.entity";
 import { Review } from "../../reviews/entities/review.entity";
+import { UUID } from "typeorm/browser/driver/mongodb/bson.typings.js";
 // import { UserAddress } from "../../user_addresses/entities/user_address.entity";
 // import { Order } from "../../orders/entities/order.entity";
 // import { Review } from "../../reviews/entities/review.entity";
@@ -33,6 +34,9 @@ export class User {
 
   @Column()
   refreshToken_hash: string;
+
+  @Column({ nullable: false })
+  activation_link: string;
 
   @Column({ default: false })
   is_active: boolean;

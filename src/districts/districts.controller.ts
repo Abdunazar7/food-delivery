@@ -7,18 +7,25 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  UseGuards,
+  Put,
 } from "@nestjs/common";
 import { ApiTags, ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { DistrictsService } from "./districts.service";
 import { CreateDistrictDto } from "./dto/create-district.dto";
 import { UpdateDistrictDto } from "./dto/update-district.dto";
 import { District } from "./entities/district.entity";
+import { Roles, UserRole } from "../app.constants";
+import { AccessTokenGuard } from "../common/guards";
+import { RolesGuard } from "../common/guards/roles.guard";
 
 @ApiTags("Districts")
 @Controller("districts")
 export class DistrictsController {
   constructor(private readonly districtsService: DistrictsService) {}
 
+  @Roles(UserRole.ADMIN)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Post()
   @ApiOperation({ summary: "Create a new district" })
   @ApiResponse({ status: 201, type: District })
@@ -40,7 +47,9 @@ export class DistrictsController {
     return this.districtsService.findOne(id);
   }
 
-  @Patch(":id")
+  @Roles(UserRole.ADMIN)
+  @UseGuards(AccessTokenGuard, RolesGuard)
+  @Put(":id")
   @ApiOperation({ summary: "Update district" })
   @ApiResponse({ status: 200, type: District })
   update(
@@ -50,6 +59,8 @@ export class DistrictsController {
     return this.districtsService.update(id, dto);
   }
 
+  @Roles(UserRole.ADMIN)
+  @UseGuards(AccessTokenGuard, RolesGuard)
   @Delete(":id")
   @ApiOperation({ summary: "Delete district" })
   @ApiResponse({ status: 204 })
